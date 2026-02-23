@@ -35,14 +35,24 @@ form.addEventListener("submit", function(event) {
     escalas.push(escala);
     localStorage.setItem("escalas", JSON.stringify(escalas));
 
-    const li = document.createElement("li");
-    li.textContent = `${name} - ${date} às ${time}`;
+    // Criar li e botão
+const li = document.createElement("li");
+li.textContent = `${name} - ${date} às ${time}`;
+const removerBtn = document.createElement("button");
+removerBtn.textContent = "Remover";
+li.appendChild(removerBtn);
 
-    // Adiciona na lista
-    scheduleList.appendChild(li);
+// Adiciona na tela
+scheduleList.appendChild(li);
 
-    // Limpa os campos do formulário
-    nameInput.value = "";
-    dateInput.value = "";
-    timeInput.value = "";
+// Limpa formulário
+nameInput.value = "";
+dateInput.value = "";
+timeInput.value = "";
+
+// Evento do botão remover
+removerBtn.addEventListener("click", function() {
+    li.remove(); // remove da tela
+    escalas = escalas.filter(e => e.nome !== name || e.data !== date || e.hora !== time); // remove da lista
+    localStorage.setItem("escalas", JSON.stringify(escalas)); // atualiza storage
 });
