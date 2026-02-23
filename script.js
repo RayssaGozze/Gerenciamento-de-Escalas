@@ -55,4 +55,6 @@ removerBtn.addEventListener("click", function() {
     li.remove(); // remove da tela
     escalas = escalas.filter(e => e.nome !== name || e.data !== date || e.hora !== time); // remove da lista
     localStorage.setItem("escalas", JSON.stringify(escalas)); // atualiza storage
+ });
+
 });
