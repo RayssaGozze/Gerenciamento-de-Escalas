@@ -58,3 +58,5 @@ removerBtn.addEventListener("click", function() {
  });
 
 });
+
+localStorage.clear()
