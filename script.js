@@ -4,59 +4,64 @@ const nameInput = document.getElementById("name");
 const dateInput = document.getElementById("date");
 const timeInput = document.getElementById("time");
 const scheduleList = document.getElementById("scheduleList");
+const btnLimpar = document.getElementById("btnLimpar");
 
-let escalas = []; // lista que vai armazenar todas as escalas em memória
-const escalasSalvas = JSON.parse(localStorage.getItem("escalas"));
-if (escalasSalvas) {
-    escalas = escalasSalvas;
-    escalas.forEach(escala => {
-        const li = document.createElement("li");
-        li.textContent = `${escala.nome} - ${escala.data} às ${escala.hora}`;
-        scheduleList.appendChild(li);
+// Lista principal
+let escalas = JSON.parse(localStorage.getItem("escalas")) || [];
+
+// Função para renderizar tudo
+function renderizarEscalas() {
+  scheduleList.innerHTML = "";
+
+  escalas.forEach((escala, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${escala.nome} - ${escala.data} às ${escala.hora}`;
+
+    const removerBtn = document.createElement("button");
+    removerBtn.textContent = "Remover";
+
+    removerBtn.addEventListener("click", function() {
+      escalas.splice(index, 1);
+      localStorage.setItem("escalas", JSON.stringify(escalas));
+      renderizarEscalas();
     });
+
+    li.appendChild(removerBtn);
+    scheduleList.appendChild(li);
+  });
 }
 
-// Função que roda ao enviar o formulário
-form.addEventListener("submit", function(event) {
-    event.preventDefault(); // Evita que a página recarregue
+// Renderiza ao carregar
+renderizarEscalas();
 
-    // Pega os valores
-    const name = nameInput.value.trim();
-    const date = dateInput.value;
-    const time = timeInput.value;
-
-    if (name === "" || date === "" || time === "") {
-        alert("Preencha todos os campos!");
-        return;
-    }
-
-    // Cria um item da lista
-  const escala = { nome: name, data: date, hora: time };
-    escalas.push(escala);
-    localStorage.setItem("escalas", JSON.stringify(escalas));
-
-    // Criar li e botão
-const li = document.createElement("li");
-li.textContent = `${name} - ${date} às ${time}`;
-const removerBtn = document.createElement("button");
-removerBtn.textContent = "Remover";
-li.appendChild(removerBtn);
-
-// Adiciona na tela
-scheduleList.appendChild(li);
-
-// Limpa formulário
-nameInput.value = "";
-dateInput.value = "";
-timeInput.value = "";
-
-// Evento do botão remover
-removerBtn.addEventListener("click", function() {
-    li.remove(); // remove da tela
-    escalas = escalas.filter(e => e.nome !== name || e.data !== date || e.hora !== time); // remove da lista
-    localStorage.setItem("escalas", JSON.stringify(escalas)); // atualiza storage
- });
-
+// Botão limpar tudo
+btnLimpar.addEventListener("click", function() {
+  localStorage.removeItem("escalas");
+  escalas = [];
+  renderizarEscalas();
 });
 
-localStorage.clear()
+// Envio do formulário
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = nameInput.value.trim();
+  const date = dateInput.value;
+  const time = timeInput.value;
+
+  if (name === "" || date === "" || time === "") {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const escala = { nome: name, data: date, hora: time };
+  escalas.push(escala);
+
+  localStorage.setItem("escalas", JSON.stringify(escalas));
+
+  renderizarEscalas();
+
+  nameInput.value = "";
+  dateInput.value = "";
+  timeInput.value = "";
+});
