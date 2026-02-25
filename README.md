@@ -6,14 +6,14 @@ Atualmente atuo como jovem aprendiz administrativo em um hospital e identifiquei
 
 O projeto está hospedado no GitHub Pages, então as alterações podem ser vistas diretamente no site.
 
-# Versão 1 (MVP)
+# Versão 1.1 (MVP)
 Funcionalidades implementadas
 
-- Formulário com inputs de nome, data e hora
-- Validação para não deixar campos vazios
-- Adição de escalas na lista na tela
-- Limpeza automática do formulário após adicionar
-- (Próximo passo) Salvar escalas no navegador usando localStorage para não perder os dados ao atualizar a página
+- Cadastro de escalas (nome, data e hora)
+- Validação de campos obrigatórios
+- Persistência de dados com localStorage
+- Remoção de escalas
+- Limpeza automática do formulário
 
 # Como usar
 
@@ -27,7 +27,4 @@ Funcionalidades implementadas
 
 # Próximas Evoluções
 
-- Salvar as escalas usando localStorage
-- Possibilidade de editar ou remover escalas
 - Estilizar melhor a lista com CSS
-- Eventualmente adicionar filtros por data ou enfermeiro
