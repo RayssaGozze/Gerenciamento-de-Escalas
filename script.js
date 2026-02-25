@@ -4,6 +4,10 @@ const nameInput = document.getElementById("name");
 const dateInput = document.getElementById("date");
 const timeInput = document.getElementById("time");
 const scheduleList = document.getElementById("scheduleList");
+const corenInput = document.getElementById("coren");
+const funcaoInput = document.getElementById("funcao");
+const mesSelecionado = document.getElementById("mes");
+const totalDiasDoMes = new Date(new Date().getFullYear(), mesSelecionado.value, 0).getDate(); // pega quantidade de dias do mês
 const btnLimpar = document.getElementById("btnLimpar");
 
 // Lista principal
