@@ -3,15 +3,32 @@ const form = document.getElementById("scheduleForm");
 const nameInput = document.getElementById("name");
 const dateInput = document.getElementById("date");
 const timeInput = document.getElementById("time");
-const scheduleList = document.getElementById("scheduleList");
 const corenInput = document.getElementById("coren");
 const funcaoInput = document.getElementById("funcao");
 const mesSelecionado = document.getElementById("mes");
-const totalDiasDoMes = new Date(new Date().getFullYear(), mesSelecionado.value, 0).getDate(); // pega quantidade de dias do mês
+const scheduleList = document.getElementById("scheduleList");
 const btnLimpar = document.getElementById("btnLimpar");
 
 // Lista principal
 let escalas = JSON.parse(localStorage.getItem("escalas")) || [];
+
+// Função para criar a escala mensal
+function criarEscala(nome, coren, funcao, horario, mes, totalDias) {
+  const escala = {
+    mes: mes,
+    coren: coren,
+    nome: nome,
+    funcao: funcao,
+    horario: horario,
+    dias: {}
+  };
+
+  for (let i = 1; i <= totalDias; i++) {
+    escala.dias[i] = "";
+  }
+
+  return escala;
+}
 
 // Função para renderizar tudo
 function renderizarEscalas() {
@@ -19,7 +36,7 @@ function renderizarEscalas() {
 
   escalas.forEach((escala, index) => {
     const li = document.createElement("li");
-    li.textContent = `${escala.nome} - ${escala.data} às ${escala.hora}`;
+    li.textContent = `${escala.nome} - ${escala.funcao} (${escala.horario}) - Mês: ${escala.mes}`;
 
     const removerBtn = document.createElement("button");
     removerBtn.textContent = "Remover";
@@ -49,30 +66,33 @@ btnLimpar.addEventListener("click", function() {
 form.addEventListener("submit", function(event) {
   event.preventDefault();
 
-  const name = nameInput.value.trim();
-  const date = dateInput.value;
-  const time = timeInput.value;
+  const nome = nameInput.value.trim();
+  const coren = corenInput.value.trim();
+  const funcao = funcaoInput.value.trim();
+  const horario = timeInput.value;
+  const mes = mesSelecionado.value;
 
-  if (name === "" || date === "" || time === "") {
+  if (!nome || !coren || !funcao || !horario || !mes) {
     alert("Preencha todos os campos!");
     return;
   }
-// criar a escala usando a função
-  const novaEscala = criarEscala(
-    nameInput.value,  
-    corenInput.value
-    funcaoInput.value
-    timeInput.value
-    mesSelecionado.value
-    totalDiasDoMes
-  );
 
+  // Calcula total de dias do mês selecionado
+  const totalDiasDoMes = new Date(new Date().getFullYear(), mes, 0).getDate();
+
+  // Cria o objeto de escala
+  const novaEscala = criarEscala(nome, coren, funcao, horario, mes, totalDiasDoMes);
+
+  // Adiciona ao array e salva no localStorage
   escalas.push(novaEscala);
   localStorage.setItem("escalas", JSON.stringify(escalas));
 
+  // Renderiza na tela
   renderizarEscalas();
 
+  // Limpa inputs
   nameInput.value = "";
-  dateInput.value = "";
+  corenInput.value = "";
+  funcaoInput.value = "";
   timeInput.value = "";
 });
