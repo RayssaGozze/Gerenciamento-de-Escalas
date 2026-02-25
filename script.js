@@ -53,10 +53,17 @@ form.addEventListener("submit", function(event) {
     alert("Preencha todos os campos!");
     return;
   }
+// criar a escala usando a função
+  const novaEscala = criarEscala(
+    nameInput.value,  
+    corenInput.value
+    funcaoInput.value
+    timeInput.value
+    mesSelecionado.value
+    totalDiasDoMes
+  );
 
-  const escala = { nome: name, data: date, hora: time };
-  escalas.push(escala);
-
+  escalas.push(novaEscala);
   localStorage.setItem("escalas", JSON.stringify(escalas));
 
   renderizarEscalas();
