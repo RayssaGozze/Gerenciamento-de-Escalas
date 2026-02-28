@@ -1,30 +1,46 @@
 # Gerenciamento de Escalas
-Projeto de gerenciamento de escalas focado na aplicação de lógica de programação, manipulação de dados e organização de informações.
-Tecnologias utilizadas: HTML, CSS e JavaScript (em desenvolvimento).
 
-Atualmente atuo como jovem aprendiz administrativo em um hospital e identifiquei dificuldades na organização e atualização de escalas. A partir dessa necessidade, desenvolvi este projeto com o objetivo de facilitar a visualização das informações diárias pela equipe.
+Este é um projeto de estudo desenvolvido para praticar programação front-end. Ele foi inspirado na forma como escalas da equipe em que faço parte no Hospitalis Barueri eram registradas, mas não é utilizado no ambiente real do hospital.
+A aplicação consiste em um sistema simples de cadastro e visualização de escalas, permitindo organizar informações de maneira prática e funcional.
 
-O projeto está hospedado no GitHub Pages, então as alterações podem ser vistas diretamente no site.
+# Tecnologias Utilizadas
 
-# Versão 1.1 (MVP)
-Funcionalidades implementadas
+- HTML
+- CSS
+-JavaScript
+- LocalStorage
+- Git e GitHub
 
-- Cadastro de escalas (nome, data e hora)
+# Versão Atual
+
+- Versão 1.0 – Estável e funcional
+
+# Funcionalidades Implementadas
+
+- Cadastro de escalas com nome, data e horário
 - Validação de campos obrigatórios
-- Persistência de dados com localStorage
-- Remoção de escalas
-- Limpeza automática do formulário
+- Armazenamento persistente utilizando localStorage
+- Remoção individual de registros
+- Limpeza completa das escalas cadastradas
+- Atualização dinâmica da interface
 
-# Como usar
+# Como Utilizar
 
-- Acesse o site pelo link do GitHub Pages
-- Preencha os campos do formulário:
-- Nome do enfermeiro
-- Data
-- Hora
-- Clique Adicionar
-- Veja a escala aparecer na lista abaixo do formulário
+- Acesse o projeto pelo GitHub Pages
+- Preencha os campos de nome, data e horário
+- Clique em “Adicionar”
+- Visualize a escala listada na tela
 
-# Próximas Evoluções
+# Objetivo do Projeto
 
-- Estilizar melhor a lista com CSS
+- Praticar conceitos fundamentais de desenvolvimento web, incluindo:
+- Manipulação de eventos
+- Estruturação de dados em JavaScript
+- Renderização dinâmica de elementos
+- Versionamento com Git
+- Publicação de aplicação estática
+
+# Deploy
+
+Projeto publicado via GitHub Pages:
+https://rayssagozze.github.io/Gerenciamento-de-Escalas/
