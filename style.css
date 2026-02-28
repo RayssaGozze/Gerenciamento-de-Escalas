@@ -69,3 +69,28 @@ li button {
 li button:hover {
     background-color: #d32f2f; /* Vermelho mais escuro ao passar o mouse */
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.linha {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.linha input {
+    flex: 1;
+}
+
+.btn-limpar {
+    background-color: #c0392b;
+}
+
+.btn-limpar:hover {
+    background-color: #a93226;
+}
